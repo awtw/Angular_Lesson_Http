@@ -30,8 +30,8 @@ export class PostsService {
 
   fetchPosts(){
     let searchParams = new HttpParams();
-    searchParams = searchParams.append('print', 'pretty');
-    searchParams = searchParams.append('custom', 'key');
+    // searchParams = searchParams.append('print', 'pretty');
+    // searchParams = searchParams.append('custom', 'key');
     return this.http
       .get<{ [key: string]: Post }>(this.setting.connectingString, {
         headers: new HttpHeaders({"Custom-Header": 'Hello'}),
