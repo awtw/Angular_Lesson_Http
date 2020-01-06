@@ -36,4 +36,8 @@ export class PostsService {
         return postArray;
       }));
   }
+
+  deletePosts(){
+    return this.http.delete(this.setting.connectingString);
+  }
 }
