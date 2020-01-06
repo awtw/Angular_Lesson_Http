@@ -11,6 +11,7 @@ import { Post } from './post.model';
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
+  isFetching = false;
 
   constructor(private http: HttpClient, private setting: Setting) {}
 
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts(){
+    this.isFetching = true;
     this.http
       .get<{[key: string]: Post}>(this.setting.connectingString)
       .pipe(map(responseData => {
@@ -52,6 +54,7 @@ export class AppComponent implements OnInit {
         return postArray;
       }))
       .subscribe(posts => {
+        this.isFetching = false;
         // console.log(posts);
         this.loadedPosts = posts;
       });
